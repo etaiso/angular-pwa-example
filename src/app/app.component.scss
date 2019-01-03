@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+
+  .sponser {
+    width: 200px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .employee {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+
+
+    &:nth-child(even) {
+      background-color: #f0f0f0;
+    }
+
+    .avatar {
+      max-width: 70px;
+      max-height: 70px;
+      margin: 0 16px;
+      border-radius: 50%;
+    }
+  }
+
+  .footer {
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .content {
+    flex: 1
+  }
+}
