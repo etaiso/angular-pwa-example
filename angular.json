@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-app-shell": {
+    "pwa-example": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-app-shell",
+            "outputPath": "dist/pwa-example",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-app-shell:build"
+            "browserTarget": "pwa-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "my-app-shell:build:production"
+              "browserTarget": "pwa-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-app-shell:build"
+            "browserTarget": "pwa-example:build"
           }
         },
         "test": {
@@ -106,10 +106,42 @@
               "**/node_modules/**"
             ]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/pwa-example-server",
+            "main": "src/main.server.ts",
+            "tsConfig": "src/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "pwa-example:build",
+            "serverTarget": "pwa-example:server",
+            "route": "app-shell-path"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "pwa-example:build:production",
+              "serverTarget": "pwa-example:server:production"
+            }
+          }
         }
       }
     },
-    "my-app-shell-e2e": {
+    "pwa-example-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -118,11 +150,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "my-app-shell:serve"
+            "devServerTarget": "pwa-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "my-app-shell:serve:production"
+              "devServerTarget": "pwa-example:serve:production"
             }
           }
         },
@@ -138,5 +170,5 @@
       }
     }
   },
-  "defaultProject": "my-app-shell"
+  "defaultProject": "pwa-example"
 }

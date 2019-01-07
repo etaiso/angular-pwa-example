@@ -35,7 +35,7 @@
       ],
       "cacheConfig": {
         "maxSize": 0,
-        "maxAge": "1d",
+        "maxAge": "5d",
         "strategy": "freshness"
       }
     }
